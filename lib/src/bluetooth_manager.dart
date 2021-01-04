@@ -140,4 +140,30 @@ class BluetoothManager {
 
     return Future.value(true);
   }
+
+  Future<dynamic> printReceipt(
+      Map<String, dynamic> config, List<LineText> data) {
+    Map<String, Object> args = Map();
+    args['config'] = config;
+    args['data'] = data.map((m) {
+      return m.toJson();
+    }).toList();
+
+    _channel.invokeMethod('printReceipt', args);
+    return Future.value(true);
+  }
+
+  Future<dynamic> printLabel(Map<String, dynamic> config, List<LineText> data) {
+    Map<String, Object> args = Map();
+    args['config'] = config;
+    args['data'] = data.map((m) {
+      return m.toJson();
+    }).toList();
+
+    _channel.invokeMethod('printLabel', args);
+    return Future.value(true);
+  }
+
+  Future<dynamic> printTest() => _channel.invokeMethod('printTest');
+
 }
